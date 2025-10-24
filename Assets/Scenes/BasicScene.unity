@@ -497,6 +497,7 @@ GameObject:
   - component: {fileID: 403449780}
   - component: {fileID: 403449781}
   - component: {fileID: 403449782}
+  - component: {fileID: 403449783}
   m_Layer: 0
   m_Name: ExplodeManager
   m_TagString: Untagged
@@ -536,6 +537,7 @@ MonoBehaviour:
   shakeDuration: 0.5
   destroyDelay: 5
   vignetteShaker: {fileID: 403449782}
+  cameraShaker: {fileID: 403449783}
 --- !u!114 &403449782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,7 +578,54 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxOffset: 0.3
+  maxOffset: 0.5
+  vignetteIntensity: 0.5
+--- !u!114 &403449783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403449779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fb07152b19f447d69c3689a9260b804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraShaker
+  targetCamera: {fileID: 1150158736}
+  cameraTransform: {fileID: 1150158732}
+  shakeDuration: 0.5
+  initialIntensity: 0.1
+  shakeSpeed: 10
+  intensityCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  fovVariation: 15
+  minFOV: 40
+  maxFOV: 100
+  compensateDistance: 1
+  distanceVariation: 2
 --- !u!1001 &441087506
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1674,6 +1723,16 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 362455665}
   m_SourcePrefab: {fileID: 100100000, guid: c6984c48aed9a154294088f4265d8478, type: 3}
+--- !u!4 &1150158732 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1767192434, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 441087506}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &1150158736 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1767192439, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 441087506}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1209196603 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2179057468902719979, guid: f47ad6ac315a3ea428b59e2cac6f2a2e, type: 3}

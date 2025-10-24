@@ -7,6 +7,7 @@ public class ExplodeManager : MonoBehaviour
     public float shakeDuration = 0.5f;
     public float destroyDelay = 5f;
     public VignetteShaker vignetteShaker;
+    public CameraShaker cameraShaker;
 
     public void SpawnExplosion()
     {
@@ -17,7 +18,8 @@ public class ExplodeManager : MonoBehaviour
         }
 
         Vector3 position = transform.position;
-        vignetteShaker?.StartShake(shakeDuration, shakeMagnitude);
+        vignetteShaker.StartShake(shakeDuration, shakeMagnitude);
+        cameraShaker.StartShake();
         GameObject explosionInstance = Instantiate(explosionPrefab, position, Quaternion.identity);
         Destroy(explosionInstance, destroyDelay);
     }
