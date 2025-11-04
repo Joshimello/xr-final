@@ -11,9 +11,33 @@ public class ExplodeManager : MonoBehaviour
     public float shakeDuration = 0.5f;
     public float destroyDelay = 5f;
 
+    [Header("Periodic Explosion Settings")]
+    public bool periodicExplosions = false;
+    public float explosionIntervalMin = 3f;
+    public float explosionIntervalMax = 10f;
+
     [Header("Component References")]
     public VignetteShaker vignetteShaker;
     public CameraShaker cameraShaker;
+
+    private float nextExplosionTime;
+
+    void Start()
+    {
+        if (periodicExplosions)
+        {
+            nextExplosionTime = Time.time + Random.Range(explosionIntervalMin, explosionIntervalMax);
+        }
+    }
+
+    void Update()
+    {
+        if (periodicExplosions && Time.time >= nextExplosionTime)
+        {
+            SpawnExplosionRandom();
+            nextExplosionTime = Time.time + Random.Range(explosionIntervalMin, explosionIntervalMax);
+        }
+    }
 
     public void SpawnExplosion(int index)
     {
